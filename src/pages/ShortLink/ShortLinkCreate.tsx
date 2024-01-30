@@ -8,7 +8,9 @@ const onSearch: SearchProps['onSearch'] = async (value) => {
   const res = await addUrlRelateUsingPost({
     longUrl: value,
   });
-  history.push('/shortLink/check?shortUrlId=' + res.data);
+  if (res.code === 0) {
+    history.push('/shortLink/check?shortUrlId=' + res.data);
+  }
 };
 export default () => {
   return (

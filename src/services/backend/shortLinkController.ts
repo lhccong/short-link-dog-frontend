@@ -47,6 +47,21 @@ export async function getUrlRelateVoByIdUsingGet(
   });
 }
 
+/** 根据短链获取长链 GET /api/short_link/getByShort */
+export async function getUrlRelateVoByShortLinkUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getUrlRelateVoByShortLinkUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseUrlRelateVo_>('/api/short_link/getByShort', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
 /** 分页获取列表（仅管理员） POST /api/short_link/list/page */
 export async function listUrlRelateByPageUsingPost(
   body: API.UrlRelateQueryRequest,
@@ -67,7 +82,7 @@ export async function listUrlRelateVoByPageUsingPost(
   body: API.UrlRelateQueryRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePageUrlRelate_>('/api/short_link/list/page/vo', {
+  return request<API.BaseResponsePageUrlRelateVo_>('/api/short_link/list/page/vo', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -92,7 +107,7 @@ export async function listMyUrlRelateVoByPageUsingPost(
   });
 }
 
-/** 更新（仅管理员） POST /api/short_link/update */
+/** 更新 POST /api/short_link/update */
 export async function updateUrlRelateUsingPost(
   body: API.UrlRelateUpdateRequest,
   options?: { [key: string]: any },

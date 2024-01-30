@@ -5,6 +5,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseListUrlTagCategoryVo_ = {
+    code?: number;
+    data?: UrlTagCategoryVo[];
+    message?: string;
+  };
+
   type BaseResponseLoginUserVO_ = {
     code?: number;
     data?: LoginUserVO;
@@ -20,6 +26,12 @@ declare namespace API {
   type BaseResponsePageUrlRelate_ = {
     code?: number;
     data?: PageUrlRelate_;
+    message?: string;
+  };
+
+  type BaseResponsePageUrlRelateVo_ = {
+    code?: number;
+    data?: PageUrlRelateVo_;
     message?: string;
   };
 
@@ -53,6 +65,18 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseUrlRelateVo_ = {
+    code?: number;
+    data?: UrlRelateVo;
+    message?: string;
+  };
+
+  type BaseResponseUrlTagVo_ = {
+    code?: number;
+    data?: UrlTagVo;
+    message?: string;
+  };
+
   type BaseResponseUser_ = {
     code?: number;
     data?: User;
@@ -83,6 +107,11 @@ declare namespace API {
   type getUrlRelateVoByIdUsingGETParams = {
     /** id */
     id?: number;
+  };
+
+  type getUrlRelateVoByShortLinkUsingGETParams = {
+    /** shortLink */
+    shortLink?: string;
   };
 
   type getUserByIdUsingGETParams = {
@@ -201,6 +230,19 @@ declare namespace API {
     total?: number;
   };
 
+  type PageUrlRelateVo_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: UrlRelateVo[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
   type PageUser_ = {
     countId?: string;
     current?: number;
@@ -262,12 +304,18 @@ declare namespace API {
   };
 
   type UrlRelate = {
+    allowNum?: number;
     createTime?: string;
+    expireTime?: string;
     id?: number;
     ipNums?: number;
     isDelete?: number;
     longUrl?: string;
+    password?: string;
+    privateTarget?: number;
     sortUrl?: string;
+    status?: number;
+    tags?: string;
     title?: string;
     updateTime?: string;
     urlImg?: string;
@@ -277,7 +325,12 @@ declare namespace API {
   };
 
   type UrlRelateAddRequest = {
+    allowNum?: number;
+    expireTime?: string;
     longUrl?: string;
+    password?: string;
+    privateTarget?: number;
+    tags?: string;
     title?: string;
     urlImg?: string;
   };
@@ -294,10 +347,50 @@ declare namespace API {
   };
 
   type UrlRelateUpdateRequest = {
+    allowNum?: number;
+    expireTime?: string;
     id?: number;
     longUrl?: string;
+    password?: string;
+    privateTarget?: number;
+    status?: number;
+    tags?: string;
     title?: string;
     urlImg?: string;
+  };
+
+  type UrlRelateVo = {
+    allowNum?: number;
+    expireTime?: string;
+    id?: number;
+    ipNums?: number;
+    longUrl?: string;
+    privateTarget?: number;
+    sortUrl?: string;
+    status?: number;
+    tags?: UrlTagVo[];
+    title?: string;
+    urlImg?: string;
+    userNums?: number;
+    visits?: number;
+  };
+
+  type UrlTagAddRequest = {
+    name?: string;
+    parentId?: number;
+  };
+
+  type UrlTagCategoryVo = {
+    id?: number;
+    name?: string;
+    tags?: UrlTagVo[];
+  };
+
+  type UrlTagVo = {
+    color?: string;
+    id?: number;
+    name?: string;
+    parentId?: number;
   };
 
   type User = {
