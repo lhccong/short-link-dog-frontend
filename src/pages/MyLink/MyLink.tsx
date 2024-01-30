@@ -293,7 +293,7 @@ const MyLink: React.FC = () => {
                       <Col span={12}>
                         <QRCode
                           errorLevel="H"
-                          value={item?.sortUrl ? item.sortUrl : ''}
+                          value={item?.sortUrl ? BACKEND_HOST_LOCAL_REDIRECT + item.sortUrl : ''}
                           icon={item.urlImg}
                         />
                       </Col>

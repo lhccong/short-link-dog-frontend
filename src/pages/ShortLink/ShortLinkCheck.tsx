@@ -280,7 +280,7 @@ const ShortLinkCheck: React.FC = () => {
 
           <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
             <div style={{ textAlign: 'right' }}>
-              <Button htmlType="reset" style={{ marginRight: '20px' }}>
+              <Button  style={{ marginRight: '20px' }} onClick={()=>history.push("/shortLink/myLink")}>
                 存为草稿📑
               </Button>
               <Button type="primary" htmlType="submit">
