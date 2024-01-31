@@ -67,8 +67,8 @@ const MyLink: React.FC = () => {
       userId: initialState?.currentUser?.id,
       pageSize: 8,
       current: pageNum,
-      sortField:"createTime",
-      sortOrder:"desc"
+      sortField: 'createTime',
+      sortOrder: 'desc',
     });
   };
   const fresh = () => {
@@ -163,7 +163,6 @@ const MyLink: React.FC = () => {
     wrapperCol: { span: 14 },
   };
 
-
   const handleUpdateOk = async () => {
     setConfirmLoading(true);
     const res = await updateUrlRelateUsingPost({
@@ -253,8 +252,10 @@ const MyLink: React.FC = () => {
                       setCurrentRow(item);
                       setOpenPassword(item?.privateTarget === 1);
                       setCurrentUrlTag(item.tags);
-                      // @ts-ignore
-                      setSelectedIds(item.tags.map((tag) => tag.id ?? 0));
+                      if (item?.tags && item?.tags.length !== 0) {
+                        // @ts-ignore
+                        setSelectedIds(item.tags.map((tag) => tag.id ?? 0));
+                      }
                       form.setFieldsValue(item);
                     }}
                   />,
