@@ -7,6 +7,7 @@ import { Helmet, history, useModel } from '@umijs/max';
 import { message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import Settings from '../../../../config/defaultSettings';
+import {Link} from "umi";
 
 const Login: React.FC = () => {
   const [type, setType] = useState<string>('account');
@@ -126,7 +127,7 @@ const Login: React.FC = () => {
               textAlign: 'right',
             }}
           >
-            <a>新用户注册</a>
+            <Link to="/user/register">新用户注册</Link>
           </div>
         </LoginForm>
       </div>

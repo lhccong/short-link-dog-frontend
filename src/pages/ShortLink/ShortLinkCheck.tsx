@@ -34,7 +34,6 @@ import {
 } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import React, { useEffect, useRef, useState } from 'react';
-import TabPane = Tabs.TabPane;
 
 const ShortLinkCheck: React.FC = () => {
   const location = useLocation();
@@ -322,7 +321,7 @@ const ShortLinkCheck: React.FC = () => {
         </FormItem>
         <Tabs onChange={changeTab} activeKey={String(currentTab)} tabPosition="left">
           {allCategory?.map((category, index) => (
-            <TabPane key={category.id} tab={category.name}>
+            <Tabs.TabPane key={category.id} tab={category.name}>
               {category.tags?.map(
                 (tag) =>
                   (selectedIds?.includes(tag.id ? tag.id : 0) && (
@@ -367,7 +366,7 @@ const ShortLinkCheck: React.FC = () => {
                   添加
                 </Tag>
               )}
-            </TabPane>
+            </Tabs.TabPane>
           ))}
         </Tabs>
       </Modal>

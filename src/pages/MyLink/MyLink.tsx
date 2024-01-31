@@ -37,7 +37,6 @@ import {
 import Meta from 'antd/es/card/Meta';
 import FormItem from 'antd/es/form/FormItem';
 import React, { useEffect, useRef, useState } from 'react';
-import TabPane = Tabs.TabPane;
 
 const MyLink: React.FC = () => {
   const [pageNum, setPageNum] = useState(0);
@@ -63,6 +62,15 @@ const MyLink: React.FC = () => {
   const [form] = Form.useForm();
 
   //刷新数据
+  const getUrlList = async () => {
+    return await listUrlRelateVoByPageUsingPost({
+      userId: initialState?.currentUser?.id,
+      pageSize: 8,
+      current: pageNum,
+      sortField:"createTime",
+      sortOrder:"desc"
+    });
+  };
   const fresh = () => {
     getUrlList().then((res) => {
       if (res.code === 0) {
@@ -154,13 +162,7 @@ const MyLink: React.FC = () => {
     labelCol: { span: 6 },
     wrapperCol: { span: 14 },
   };
-  const getUrlList = async () => {
-    return await listUrlRelateVoByPageUsingPost({
-      userId: initialState?.currentUser?.id,
-      pageSize: 8,
-      current: pageNum,
-    });
-  };
+
 
   const handleUpdateOk = async () => {
     setConfirmLoading(true);
@@ -403,7 +405,7 @@ const MyLink: React.FC = () => {
         </FormItem>
         <Tabs onChange={changeTab} activeKey={String(currentTab)} tabPosition="left">
           {allCategory?.map((category, index) => (
-            <TabPane key={category.id} tab={category.name}>
+            <Tabs.TabPane key={category.id} tab={category.name}>
               {category.tags?.map(
                 (tag) =>
                   (selectedIds?.includes(tag.id ? tag.id : 0) && (
@@ -448,7 +450,7 @@ const MyLink: React.FC = () => {
                   添加
                 </Tag>
               )}
-            </TabPane>
+            </Tabs.TabPane>
           ))}
         </Tabs>
       </Modal>

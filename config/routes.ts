@@ -1,5 +1,5 @@
 export default [
-  { path: '/user', layout: false, routes: [{ path: '/user/login', component: './User/Login' }] },
+  { path: '/user', layout: false, routes: [{ path: '/user/login', component: './User/Login' },{ path: '/user/register', component: './User/Register' }] },
   { path: '/welcome', icon: 'smile', component: './Welcome', name: '首页' },
   { path: '/shortLink/myLink', access: 'canUser', icon: 'link', component: './MyLink/MyLink', name: '我的短链' },
   { path: '/shortLink/create', access: 'canUser', icon: 'subnode', component: './ShortLink/ShortLinkCreate', name: '短链接生成' },
