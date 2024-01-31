@@ -1,4 +1,4 @@
-import { BACKEND_HOST_LOCAL } from '@/constants';
+import { BACKEND_HOST_LOCAL_REDIRECT } from '@/constants';
 import {
   getUrlRelateVoByIdUsingGet,
   updateUrlRelateUsingPost,
@@ -27,7 +27,8 @@ import {
   Modal,
   Select,
   Steps,
-  Switch, Tabs,
+  Switch,
+  Tabs,
   Tag,
   Tooltip,
 } from 'antd';
@@ -219,7 +220,7 @@ const ShortLinkCheck: React.FC = () => {
           </Form.Item>
           <Form.Item label="目标短链">
             <span className="ant-form-text">
-              {BACKEND_HOST_LOCAL}/link_dog/{shortLink?.sortUrl}
+              {BACKEND_HOST_LOCAL_REDIRECT + shortLink?.sortUrl}
             </span>
           </Form.Item>
           <Form.Item label="原本长链">
@@ -280,7 +281,10 @@ const ShortLinkCheck: React.FC = () => {
 
           <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
             <div style={{ textAlign: 'right' }}>
-              <Button  style={{ marginRight: '20px' }} onClick={()=>history.push("/shortLink/myLink")}>
+              <Button
+                style={{ marginRight: '20px' }}
+                onClick={() => history.push('/shortLink/myLink')}
+              >
                 存为草稿📑
               </Button>
               <Button type="primary" htmlType="submit">

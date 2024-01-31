@@ -29,19 +29,19 @@ const Login: React.FC = () => {
       const res = await userLoginUsingPost({
         ...values,
       });
-
-      const defaultLoginSuccessMessage = '登录成功！';
-      localStorage.setItem('tokenName', res.data?.saTokenInfo?.tokenName as string);
-      localStorage.setItem('tokenValue', res.data?.saTokenInfo?.tokenValue as string);
-      message.success(defaultLoginSuccessMessage);
-      // 保存已登录用户信息
-      setInitialState({
-        ...initialState,
-        currentUser: res.data,
-      });
-      const urlParams = new URL(window.location.href).searchParams;
-      history.push(urlParams.get('redirect') || '/');
-      return;
+      if (res.code===0){
+        const defaultLoginSuccessMessage = '登录成功！';
+        localStorage.setItem('tokenName', res.data?.saTokenInfo?.tokenName as string);
+        localStorage.setItem('tokenValue', res.data?.saTokenInfo?.tokenValue as string);
+        message.success(defaultLoginSuccessMessage);
+        // 保存已登录用户信息
+        setInitialState({
+          ...initialState,
+          currentUser: res.data,
+        });
+        const urlParams = new URL(window.location.href).searchParams;
+        history.push(urlParams.get('redirect') || '/');
+      }
     } catch (error: any) {
       const defaultLoginFailureMessage = `登录失败，${error.message}`;
       message.error(defaultLoginFailureMessage);

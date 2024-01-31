@@ -3,7 +3,7 @@ import {
   Card,
   Result,
 } from 'antd';
-
+import { history } from '@@/core/history';
 export default () => {
   return (
     <div>
@@ -13,10 +13,9 @@ export default () => {
           title="恭喜你发布成功啦✨"
           subTitle="成功不是最终的，失败也不是致命的：关键在于勇气坚持不懈。"
           extra={[
-            <Button type="primary" key="console">
+            <Button type="primary" key="console" onClick={()=>{history.push("/shortLink/myLink")}}>
               返回我的短链
             </Button>,
-            // <Button key="buy">Buy Again</Button>,
           ]}
         />
       </Card>
