@@ -22,8 +22,8 @@ const Register: React.FC = () => {
 
     try {
       // 注册
-      const id = await userRegisterUsingPost(values);
-      if (id) {
+      const data = await userRegisterUsingPost(values);
+      if (data.code===0) {
         const defaultLoginSuccessMessage = '注册成功！';
         message.success(defaultLoginSuccessMessage);
 
