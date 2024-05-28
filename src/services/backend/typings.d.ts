@@ -442,6 +442,7 @@ declare namespace API {
     checkPassword?: string;
     userAccount?: string;
     userPassword?: string;
+    captchaVerification?: string;
   };
 
   type UserUpdateMyRequest = {

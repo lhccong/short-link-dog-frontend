@@ -3,14 +3,22 @@ import { SYSTEM_LOGO } from '@/constants';
 import { userRegisterUsingPost } from '@/services/backend/userController';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormText } from '@ant-design/pro-form';
+import { Captcha } from 'aj-captcha-react';
 import { message, Tabs } from 'antd';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { history } from 'umi';
 import styles from './index.less';
 
 const Register: React.FC = () => {
   const [type, setType] = useState<string>('account');
+  const [valueData, setValueData] = useState<API.UserRegisterRequest>(null);
 
+  const ref = useRef();
+
+  const click = () => {
+    ref.current?.verify();
+    console.log(ref.current?.verify());
+  };
   // 表单提交
   const handleSubmit = async (values: API.UserRegisterRequest) => {
     const { userPassword, checkPassword } = values;
@@ -23,7 +31,7 @@ const Register: React.FC = () => {
     try {
       // 注册
       const data = await userRegisterUsingPost(values);
-      if (data.code===0) {
+      if (data.code === 0) {
         const defaultLoginSuccessMessage = '注册成功！';
         message.success(defaultLoginSuccessMessage);
 
@@ -52,7 +60,8 @@ const Register: React.FC = () => {
             autoLogin: true,
           }}
           onFinish={async (values) => {
-            await handleSubmit(values as API.UserRegisterRequest);
+            click();
+            setValueData(values);
           }}
         >
           <Tabs activeKey={type} onChange={setType}>
@@ -112,6 +121,18 @@ const Register: React.FC = () => {
                   },
                 ]}
               />
+              <Captcha
+                onSuccess={async (data) => {
+                  const value = valueData;
+                  if (value) {
+                    value.captchaVerification = data.captchaVerification;
+                    await handleSubmit(value);
+                  }
+                }}
+                path="http://localhost:8204/api"
+                type="auto"
+                ref={ref}
+              ></Captcha>
             </>
           )}
         </LoginForm>
